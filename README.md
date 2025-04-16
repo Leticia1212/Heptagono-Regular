@@ -5,4 +5,6 @@
 // c) teclado
 // d) slider
 // e) reshape
-// OBS: Como gerar os pontos? 
+// OBS: Como gerar os pontos? Resposta no heptagono.js
+
+Git Pages: https://leticia1212.github.io/Heptagono-Regular/
