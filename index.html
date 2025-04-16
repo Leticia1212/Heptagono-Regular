@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Heptágono Regular</title>
+</head>
+<body>
+
+  <div style="margin-top: 20px; display: flex; justify-content: center;">
+    <h3 style="color: rgb(0, 2, 129);">Heptagono Regular</h3>
+    <br>
+  </div>
+
+  <!-- ideia que tiveram em sala, de colocar alinhado o canva na tela  --> 
+  <body style="margin: 0; height: 100vh; display: flex; flex-direction: column; align-items: center; justify-content: center;">
+  <canvas id="gl-canvas" width="512" height="512" style="border: 2px solid rgb(0, 3, 155);"></canvas>
+  <br>
+
+  <div style="margin-top: 20px; display: flex; justify-content: center;">
+    <input type="range" id="slider" min="0" max="0.10" step="0.01" value="0.05"> <!-- deixando mais lento  -->
+    <button style="color: rgb(0, 2, 129);" id="pausarRotacao">Pausar</button>
+  </div>
+  <br>
+
+  <script id="fragment-shader" type="x-shader/x-fragment">
+    #version 300 es
+    precision highp float;
+    out vec4 fColor;
+    void main()
+    {
+      fColor = vec4(0.0, 0.1, 0.5, 1.0); // Azul escuro
+    }
+  </script>
+
+
+  <script id="vertex-shader" type="x-shader/x-vertex">
+    #version 300 es
+    in vec4 aPosition;
+    uniform float theta;
+    void main()
+    {
+	    float s = sin(theta);
+      float c = cos(theta);
+      mat4 rotation = mat4(
+        c, s, 0.0, 0.0,
+        -s, c, 0.0, 0.0,
+        0.0, 0.0, 1.0, 0.0,
+        0.0, 0.0, 0.0, 1.0
+      );
+      gl_Position = rotation * aPosition;
+    }
+  </script>
+    
+  <script src="initShaders.js"></script>
+  <script src="MV.js"></script>
+  <script src="heptagono.js"></script>
+</body>
+
+</html>
